@@ -3,9 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/assets/css/style.css">
-        <script src='/assets/script.js' defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="assets/css/style.css">
         <title>4CAST</title>
     </head>
     <body>
@@ -14,15 +12,23 @@
                 <header>
                     <h1>4CAST</h1>
                 </header>
-                <main class=grid-box>
+                <main class="grid-box">
                     <div class="grid-box-1">
-                        <h2>WEATHER</h2>
                         <form id="weather-form">
-                            <label for="city-input">City Search</label>
-                            <input type="text" id="city-input"><br>
+                            <input type="text" autocomplete="off" placeholder="What city?" class="city-input"><br>
                             <input id="select-city" type="submit" value="GO!">
                         </form>
-                        <div id="weather-div"></div>
+                        <section id="weather-div">
+                            <section class="location">
+                                <div class="city">Columbus, OH</div>
+                                <div class="date">Monday 22 July 2020</div>
+                            </section>
+                            <section class="current">
+                                <div class="temp">15<span></span></div>
+                                <div class="weather">Sunny</div>
+                                <div class="hi-low">13 / 16</div>
+                            </section>
+                        </section>
                     </div>
                     <div class="grid-box-2">
                         <h2></h2>
@@ -36,5 +42,6 @@
                 </main>
             </container>
         </div>
+        <script src="assets/script.js"></script>
     </body>
 </html>
