@@ -1,11 +1,8 @@
 const key = '63183c4ac7d682e53892a0100ab56cb4';
 let cities = [];
 
-// displaycityInfo function re-renders the HTML to display the appropriate content
 function displaycityInfo(city) {
 
-    //let city = $(this).attr("data-name");
-    //let city = $(this).attr("data-name");
     let initialCall = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + key;
 
     $.ajax({
@@ -16,64 +13,102 @@ function displaycityInfo(city) {
         let latitude = response.coord.lat;
         let longitude = response.coord.lon;
 
+            let queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&units=imperial&%20exclude=minutelyhourly&appid=" + key;
 
-        let queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&units=imperial&%20exclude=minutelyhourly&appid=" + key;
-        // Creates AJAX call for the specific city button being clicked
-
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-            console.log(response.current);
-            $('#cities-view').empty();
-            let cityContainer = $('<div class="city">');
-            //let logo = $('<img>').attr(href='http://openweathermap.org/img/wn/10d@2x.png', response.current.weather.icon);
-            let logo = $('<img>').attr('src', 'http://openweathermap.org/img/wn/' + response.current.weather[0].icon + '@2x.png');
-            //let description = $('<img>').text(`${response.current.weather.description}`);
-            let feelsLike = $('<h3>').text(`Feels like: ${response.current.feels_like}°F`);
-            let currentTemp = $('<h3>').text(` Current temperature: ${response.current.temp}°F`);
-            let humidity = $('<h3>').text(`Humidity: ${response.current.humidity}%`);
-            let wind = $('<h3>').text(`Wind speed: ${response.current.wind_speed} MPH`);
-            let UV = $('<h3>').text(`UV index: ${response.current.uvi}`);
-            cityContainer.append(logo);
-            //cityContainer.append(description);
-            cityContainer.append(feelsLike);
-            cityContainer.append(currentTemp);
-            cityContainer.append(humidity);
-            cityContainer.append(wind);
-            cityContainer.append(UV);
-            $('#cities-view').prepend(cityContainer);
-        });
-    });
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+                //console.log(response.current);
+                $('#cities-view').empty();
+                $('#day1').empty();
+                $('#day2').empty();
+                $('#day3').empty();
+                $('#day4').empty();
+                $('#day5').empty();
+                let cityContainer = $('<div class="city">');
+                let dayOne = $('<div class="city">');
+                let dayTwo = $('<div class="city">');
+                let dayThree = $('<div class="city">');
+                let dayFour = $('<div class="city">');
+                let dayFive = $('<div class="city">');
+                let logo = $('<img>').attr('src', 'http://openweathermap.org/img/wn/' + response.current.weather[0].icon + '@2x.png');
+                let feelsLike = $('<h4>').text(`Feels like: ${response.current.feels_like}°F`);
+                let currentTemp = $('<h5>').text(` Current temperature: ${response.current.temp}°F`);
+                let humidity = $('<h5>').text(`Humidity: ${response.current.humidity}%`);
+                let wind = $('<h5>').text(`Wind speed: ${response.current.wind_speed} MPH`);
+                let UV = $('<h5>').text(`UV index: ${response.current.uvi}`);
+                let dayOneLogo = $('<img>').attr('src', 'http://openweathermap.org/img/wn/' + response.daily[0].weather[0].icon + '@2x.png');
+                let dayTwoLogo = $('<img>').attr('src', 'http://openweathermap.org/img/wn/' + response.daily[1].weather[0].icon + '@2x.png');
+                let dayThreeLogo = $('<img>').attr('src', 'http://openweathermap.org/img/wn/' + response.daily[2].weather[0].icon + '@2x.png');
+                let dayFourLogo = $('<img>').attr('src', 'http://openweathermap.org/img/wn/' + response.daily[3].weather[0].icon + '@2x.png');
+                let dayFiveLogo = $('<img>').attr('src', 'http://openweathermap.org/img/wn/' + response.daily[4].weather[0].icon + '@2x.png');
+                let dayOneDescription = $('<h4>').text(` ${response.daily[0].weather[0].description} `);
+                let dayTwoDescription = $('<h4>').text(` ${response.daily[1].weather[0].description} `);
+                let dayThreeDescription = $('<h4>').text(` ${response.daily[2].weather[0].description} `);
+                let dayFourDescription = $('<h4>').text(` ${response.daily[3].weather[0].description} `);
+                let dayFiveDescription = $('<h4>').text(` ${response.daily[4].weather[0].description} `);
+                let dayOneTempMax = $('<h5>').text(`High: ${response.daily[0].temp.max}°F`);
+                let dayTwoTempMax = $('<h5>').text(`High: ${response.daily[1].temp.max}°F`);
+                let dayThreeTempMax = $('<h5>').text(`High: ${response.daily[2].temp.max}°F`);
+                let dayFourTempMax = $('<h5>').text(`High: ${response.daily[3].temp.max}°F`);
+                let dayFiveTempMax = $('<h5>').text(`High: ${response.daily[4].temp.max}°F`);
+                let dayOneTempMin = $('<h5>').text(`Low: ${response.daily[0].temp.min}°F`);
+                let dayTwoTempMin = $('<h5>').text(`Low: ${response.daily[1].temp.min}°F`);
+                let dayThreeTempMin = $('<h5>').text(`Low: ${response.daily[2].temp.min}°F`);
+                let dayFourTempMin = $('<h5>').text(`Low: ${response.daily[3].temp.min}°F`);
+                let dayFiveTempMin = $('<h5>').text(`Low: ${response.daily[4].temp.min}°F`);
+                cityContainer.append(logo);
+                cityContainer.append(feelsLike);
+                cityContainer.append(currentTemp);
+                cityContainer.append(humidity);
+                cityContainer.append(wind);
+                cityContainer.append(UV);
+                dayOne.append(dayOneLogo);
+                dayTwo.append(dayTwoLogo);
+                dayThree.append(dayThreeLogo);
+                dayFour.append(dayFourLogo);
+                dayFive.append(dayFiveLogo);
+                dayOne.append(dayOneDescription);
+                dayTwo.append(dayTwoDescription);
+                dayThree.append(dayThreeDescription);
+                dayFour.append(dayFourDescription);
+                dayFive.append(dayFiveDescription);
+                dayOne.append(dayOneTempMax);
+                dayTwo.append(dayTwoTempMax);
+                dayThree.append(dayThreeTempMax);
+                dayFour.append(dayFourTempMax);
+                dayFive.append(dayFiveTempMax);
+                dayOne.append(dayOneTempMin);
+                dayTwo.append(dayTwoTempMin);
+                dayThree.append(dayThreeTempMin);
+                dayFour.append(dayFourTempMin);
+                dayFive.append(dayFiveTempMin);
+                console.log(response)
+                $('#cities-view').prepend(cityContainer);
+                $('#day1').prepend(dayOne);
+                $('#day2').prepend(dayTwo);
+                $('#day3').prepend(dayThree);
+                $('#day4').prepend(dayFour);
+                $('#day5').prepend(dayFive);
+            });
+    });    
 }
-// Function for displaying city data
+
 function renderButtons() {
-    // Deletes the cities prior to adding new cities
-    // (this is necessary otherwise you will have repeat buttons)
     $("#buttons-view").empty();
-    // Loops through the array of cities
     for (let i = 0; i < cities.length; i++) {
-        // Then dynamicaly generates buttons for each city in the array
-        // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
         let a = $("<button>");
-        // Adds a class of city to our button
         a.addClass("city");
-        // Added a data-attribute
         a.attr("data-name", cities[i]);
-        // Provided the initial button text
         a.text(cities[i]);
-        // Added the button to the buttons-view div
         $("#buttons-view").append(a);
     }
 }
-// This function handles events where the add city button is clicked
 $("#add-city").on("click", function (event) {
     event.preventDefault();
-    // This line of code will grab the input from the textbox
     let city = $("#city-input").val().trim();
-    // The city from the textbox is then added to our array
     cities.push(city);
-    // Calling renderButtons which handles the processing of our city array
     renderButtons();
 
     displaycityInfo(city);
@@ -85,9 +120,11 @@ $(document).on("click", ".city", function (event) {
     console.log(city);
     displaycityInfo(city);
 
-})
-// Adding click event listeners to all elements with a class of "city"
-//$(document).on("click", ".city", displaycityInfo);
+});
+//$(document).on("click", "#add-city", function(event) {
+    //$('#city-input').localStorage.setItem();
+//})
+
+
 // Calling the renderButtons function to display the initial buttons
 renderButtons();
-//displaycityInfo();

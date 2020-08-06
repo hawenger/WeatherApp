@@ -4,6 +4,22 @@
     font-size: 62.5%; /*Sets default font size to eq. 10px meaning rem like 4.2 = 42 px*/
 }
 
+#buttons-view > * {
+
+    width: 10rem;
+    border: .5rem solid rgb(129 127 178);
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 1rem;
+    color: #15144b;
+    text-transform: uppercase;
+    padding: 0;
+
+}
+
 * {
     box-sizing: border-box;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -13,10 +29,9 @@
 
 header {
     background-color: rgb(87 85 148);
-    border-bottom: 1rem solid rgb(28, 26, 90, 0.75);
-    border-right: 1rem solid rgb(28, 26, 90, 0.75);
-    border-left: 1rem solid rgb(28, 26, 90, 0.75);
-    width: 75vw;;
+    border: 1rem solid rgb(28, 26, 90, 0.75);
+    width: 50vw;
+    max-width: 50vw;
 }
 
 h1, 
@@ -29,13 +44,8 @@ h4 {
 
 h1 {
     font-size: 5.4rem;
-    padding: 5rem 2rem 0 2rem;
+    padding: 5rem 2rem 5rem 2rem;
     color: rgb(129, 127, 178);
-}
-
-h1 > span {
-    font-size: 2.4rem;
-    font-weight: 500;
 }
 
 h2 {
@@ -43,25 +53,88 @@ h2 {
     color: rgb(129, 127, 178);
     margin: 2rem 0 2rem 0;
     font-weight: 700;
-    font-family: 'arial narrow', Arial, sans-serif;
     padding: 0 1rem;
 }
+
+h3 {
+    font-size: 2.8rem;
+    color: rgb(129, 127, 178);
+}
+
+h4 {
+    font-size: 2.4rem;
+    color: rgb(242 242 242);
+    text-transform: uppercase;
+}
+
+h5 {
+    font-size: 2rem;
+    color: rgb(129, 127, 178);
+    font-family: 'arial narrow', Arial, sans-serif;
+}
+
+.five-day > * {
+    border: 1em solid rgb(54 51 119);
+}
+#day1, #day2, #day3, #day4, #day5 {
+    border: 1rem solid rgb(129, 127, 178);
+    max-width: 80vw;
+    width: 50vw;
+}
+#day5 {
+    margin-bottom: 2em;
+}
+
+.city   {
+padding: 2em;
+padding: 2em;
+background-color: #bcd1d92b;
+border: 1rem solid black;
+}
+
+#city-input {
+    height: 2.5rem;
+    margin-top: 1rem;
+    color: #15144b;
+    text-align: center;
+    background-color: rgb(129 127 178);
+    border: .2rem solid rgb(129 127 178);
+    text-transform: uppercase;
+}
+
+#add-city {
+    margin-bottom: 2rem;
+    width: 7rem;
+    background-color: #222260;
+    color: #f2f2f1;
+    padding: .5rem;
+    text-align: center;
+    border: .2rem solid rgb(129 127 178);
+}
+
+#add-city:hover {
+    cursor: pointer;
+    transition: 0.7s;
+    color:  rgb(242, 242, 242);
+    background: transparent;
+    border-color:  rgb(11, 9, 60, 0.75);
+}
+
 /*UTILITIES*/
 
 .container {
-    width: 100vw;
-    height: 100vh;
+    width: 100vw;;
     display: flex;
     justify-content: center;
     align-items: center;
     max-width: 80rem;   /*combined w margin keeps thing centered on page on larger screens!*/
     margin: 0 auto;
     padding: 0;
+    border: 1rem solid rgb(11, 9, 60, 0.75);
 }
 
 .container > * { /*children of container*/
     width: 100%;
-    border: 1rem solid rgb(11, 9, 60, 0.75);
 }
 
 .flex-column {
@@ -72,6 +145,7 @@ h2 {
 .flex-center {
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 .justify-center {
@@ -82,20 +156,26 @@ h2 {
     text-align: center;
 }
 
-.hidden {
-    display: none;
+#five-day {
+    display:none;
 }
-
 /*Buttons*/
 
-button {
-    background-color: rgb(54 51 119);
-    border: none;
-    width: 5em;
-    height: 5em;
+#buttons-view > *:hover {
+    cursor: pointer;
+    transition: 0.7s;
+    color:  rgb(242, 242, 242);
+    background: transparent;
+    border-color:  rgb(11, 9, 60, 0.75);
+
 }
 
-button:hover {
-    cursor: pointer;
-    
+@media (min-width: 62em) {
+    header {
+        max-width: 35vw;
+    }
+
+    #day1, #day2, #day3, #day4, #day5 {
+        max-width: 35vw;
+    }
 }
