@@ -13,6 +13,7 @@ let dayFourDate;
 let dayFiveDate;
 const dayNames = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
 
+
 function displaycityInfo(city) {
 
     let initialCall = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + key;
@@ -43,7 +44,6 @@ function displaycityInfo(city) {
                 $('#day5').empty();
 //DATE FUNCTIONS
                 const now = new Date();
-                let todayDate = $('<h5>').text(`${now.getUTCDate()}.${now.getUTCMonth()}.${now.getUTCFullYear()}`)
 
                 let weekName=parseInt(now.getUTCDay()); 
 
@@ -131,6 +131,7 @@ function displaycityInfo(city) {
                 let dayThreeTempMin = $('<h5>').text(`Low: ${response.daily[2].temp.min}°F`);
                 let dayFourTempMin = $('<h5>').text(`Low: ${response.daily[3].temp.min}°F`);
                 let dayFiveTempMin = $('<h5>').text(`Low: ${response.daily[4].temp.min}°F`);
+//ADDING GENERATED CONTENT               
                 cityContainer.append(date);
                 cityContainer.append(dateLong);
                 cityContainer.append(logo);
@@ -177,8 +178,7 @@ function displaycityInfo(city) {
                 $('#day4').prepend(dayFour);
                 $('#day5').prepend(dayFive);
                 $('#timezone').prepend(timezone);
-                console.log(uvNum);
-                //let index = parseInt(uvNum);
+//UV INDEX COLORS FUNCTION
                 function uvDisplay() {
                     if (uvNum <= 2) {
                         $(UV).toggleClass('green'); 
@@ -198,6 +198,8 @@ function displaycityInfo(city) {
             });
     });    
 }
+
+//MAKING THE CITY BUTTONS and CLICK EVENTS
 
 function renderButtons() {
     $("#buttons-view").empty();
