@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="assets/css/style.css">
-        <title>4CAST</title>
-    </head>
-    <body>
-        <div class="container">
-            <container class="flex-center flex-column">
-                <header>
-                    <h1>4CAST</h1>
-                </header>
-                <div id="buttons-view"></div>
-                <main class="grid-box">
-                    <div class="grid-box-1">
-                        <form id="city-form" class="flex-center flex-column">
-                            <input type="text" autocomplete="off" placeholder="What city?" id="city-input"><br>
-                            <input id="add-city" type="submit" value="SEARCH">
-                        </form>
-                        <div id="timezone"></div>
-                        <section id="cities-view" class="flex-center flex-column"></section>
-                    </div>
-                    <section id="five-day" class="flex-center flex-column">
-                        <h2>5 DAY FORECAST</h2>
-                        <div id="day1"></div>
-                        <div id="day2"></div>
-                        <div id="day3"></div>
-                        <div id="day4"></div>
-                        <div id="day5"></div>
-                    </section>
-                </main>
-            </container>
-        </div>
-        <script src="assets/script.js"></script>
-    </body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>4CAST</title>
+</head>
+
+<body>
+    <div class="container">
+        <container class="flex-center flex-column">
+            <header>
+                <h1>4CAST</h1>
+            </header>
+            <div id="buttons-view"></div>
+            <main class="grid-box">
+                <div class="grid-box-1">
+                    <form id="city-form" class="flex-center flex-column">
+                        <input type="text" autocomplete="off" placeholder="What city?" id="city-input"><br>
+                        <input id="add-city" type="submit" value="SEARCH">
+                    </form>
+                    <div id="timezone"></div>
+                    <section id="cities-view" class="flex-center flex-column"></section>
+                </div>
+                <section id="five-day" class="flex-center flex-column">
+                    <h2>5 DAY FORECAST</h2>
+                    <div id="day1"></div>
+                    <div id="day2"></div>
+                    <div id="day3"></div>
+                    <div id="day4"></div>
+                    <div id="day5"></div>
+                </section>
+            </main>
+        </container>
+    </div>
+    <script src="assets/script.js"></script>
+</body>
+
 </html>
