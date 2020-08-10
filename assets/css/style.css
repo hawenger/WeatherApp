@@ -171,6 +171,24 @@ border: 1rem solid black;
 
 }
 
+.green {
+    color: rgb(72, 182, 72);
+}
+.yellow {
+    color: rgb(223, 233, 84);
+}
+.orange {
+    color: rgb(233, 135, 43);
+}
+.red {
+    color: rgb(245, 72, 41);
+}
+
+.colorBox {
+    height: 2em;
+    width: 2em;
+}
+
 @media (min-width: 62em) {
     header {
         max-width: 35vw;
