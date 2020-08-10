@@ -3,6 +3,7 @@
 Using Open Weather's API, this application offers a simple & clean way to view current and upcoming(5 day forecast) weather conditons based on a users searched city.
 
 link: http://hawenger.github.io/WeatherApp
+image: https://user-images.githubusercontent.com/63066634/89839256-32732780-db22-11ea-953f-d091cdeaca10.png
 
 A user can type a city into an input box on the application's main page.  Once the request is submitted (via enter button), a call is maded to an Open Weather API to grab the coordinates (latitude and longitude) of searched city.  The application then makes a second call to an Open Weather API with more information using the latitude and logitude to grab the actual display information such as temperatures, conditions, uv index and other pertinent data.
 
