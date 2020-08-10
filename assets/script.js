@@ -2,6 +2,16 @@ const key = '63183c4ac7d682e53892a0100ab56cb4';
 let cities = [];
 let uvNum;
 let timezone;
+let DOW;
+let dateNum;
+let month;
+let year;
+let dayOneDate;
+let dayTwoDate;
+let dayThreeDate;
+let dayFourDate;
+let dayFiveDate;
+const dayNames = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
 
 function displaycityInfo(city) {
 
@@ -22,7 +32,7 @@ function displaycityInfo(city) {
             $.ajax({
                 url: queryURL,
                 method: "GET"
-            }).then(function (response) {
+            }).then(function (response) { //CLEARING DIVS
                 console.log(response);
                 $('#cities-view').empty();
                 $('#timezone').empty();
@@ -31,13 +41,58 @@ function displaycityInfo(city) {
                 $('#day3').empty();
                 $('#day4').empty();
                 $('#day5').empty();
+//DATE FUNCTIONS
+                const now = new Date();
+                let todayDate = $('<h5>').text(`${now.getUTCDate()}.${now.getUTCMonth()}.${now.getUTCFullYear()}`)
+
+                let weekName=parseInt(now.getUTCDay()); 
+
+                function dayOfWeek() {
+                    if(weekName === 0) {
+                        DOW= dayNames[0];
+                    }
+                    if(weekName === 1) {
+                        DOW= dayNames[1];
+                    }
+                    if(weekName === 2) {
+                        DOW= dayNames[2];
+                    }
+                    if(weekName === 3) {
+                        DOW= dayNames[3];
+                    }
+                    if(weekName === 4) {
+                        DOW= dayNames[4];
+                    }
+                    if(weekName === 5) {
+                        DOW= dayNames[5];
+                    }
+                    if(weekName === 6) {
+                        DOW= dayNames[6];
+                    }
+                }
+
+                dayOfWeek();
+                console.log(DOW);
+
+                function dayofWeekForecast() {
+                    dayOneDate = dayNames[weekName + 1];
+                    dayTwoDate = dayNames[weekName + 2];
+                    dayThreeDate = dayNames[weekName + 3];
+                    dayFourDate = dayNames[weekName + 4];
+                    dayFiveDate = dayNames[weekName + 5];
+                }
+
+                dayofWeekForecast();
+//ASSIGNING DIVS    
                 let cityContainer = $('<div class="city">');
                 let dayOne = $('<div class="city">');
                 let dayTwo = $('<div class="city">');
                 let dayThree = $('<div class="city">');
                 let dayFour = $('<div class="city">');
                 let dayFive = $('<div class="city">');
-                let date = $('<h5>').text(`${response.current.dt}`);
+//CALLING API             
+                let date = $('<h5>').text(`${DOW}`);
+                let dateLong = $('<h5>').text(`(${now.getUTCDate()}.${now.getUTCMonth()}.${now.getUTCFullYear()})`)
                 let logo = $('<img>').attr('src', 'http://openweathermap.org/img/wn/' + response.current.weather[0].icon + '@2x.png');
                 let feelsLike = $('<h4>').text(`Feels like: ${response.current.feels_like}°F`);
                 let currentTemp = $('<h5>').text(` Current temperature: ${response.current.temp}°F`);
@@ -46,6 +101,11 @@ function displaycityInfo(city) {
                 uvNum = parseInt(response.current.uvi);
                 let UV = $('<h5>').text(`UV index: ${response.current.uvi}`);
                 let uvText = $('<p> class=".colorBox"');
+                let dateOne = $('<h5>').text(dayOneDate);
+                let dateTwo = $('<h5>').text(dayTwoDate);
+                let dateThree = $('<h5>').text(dayThreeDate);
+                let dateFour = $('<h5>').text(dayFourDate);
+                let dateFive = $('<h5>').text(dayFiveDate);
                 let dayOneLogo = $('<img>').attr('src', 'http://openweathermap.org/img/wn/' + response.daily[0].weather[0].icon + '@2x.png');
                 let dayTwoLogo = $('<img>').attr('src', 'http://openweathermap.org/img/wn/' + response.daily[1].weather[0].icon + '@2x.png');
                 let dayThreeLogo = $('<img>').attr('src', 'http://openweathermap.org/img/wn/' + response.daily[2].weather[0].icon + '@2x.png');
@@ -72,6 +132,7 @@ function displaycityInfo(city) {
                 let dayFourTempMin = $('<h5>').text(`Low: ${response.daily[3].temp.min}°F`);
                 let dayFiveTempMin = $('<h5>').text(`Low: ${response.daily[4].temp.min}°F`);
                 cityContainer.append(date);
+                cityContainer.append(dateLong);
                 cityContainer.append(logo);
                 cityContainer.append(feelsLike);
                 cityContainer.append(currentTemp);
@@ -79,6 +140,11 @@ function displaycityInfo(city) {
                 cityContainer.append(wind);
                 cityContainer.append(UV);
                 cityContainer.append(uvText);
+                dayOne.append(dateOne);
+                dayTwo.append(dateTwo);
+                dayThree.append(dateThree);
+                dayFour.append(dateFour);
+                dayFive.append(dateFive);
                 dayOne.append(dayOneLogo);
                 dayTwo.append(dayTwoLogo);
                 dayThree.append(dayThreeLogo);
@@ -127,7 +193,8 @@ function displaycityInfo(city) {
                         $(UV).toggleClass('red');    
                     }
                 }
-                uvDisplay();    
+                uvDisplay();   
+                
             });
     });    
 }
