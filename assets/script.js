@@ -12,6 +12,7 @@ function displaycityInfo(city) {
 
         let latitude = response.coord.lat;
         let longitude = response.coord.lon;
+        console.log(response);
 
             let queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&units=imperial&%20exclude=minutelyhourly&appid=" + key;
 
@@ -19,8 +20,9 @@ function displaycityInfo(city) {
                 url: queryURL,
                 method: "GET"
             }).then(function (response) {
-                //console.log(response.current);
+                console.log(response);
                 $('#cities-view').empty();
+                $('#timezone').empty();
                 $('#day1').empty();
                 $('#day2').empty();
                 $('#day3').empty();
@@ -48,6 +50,11 @@ function displaycityInfo(city) {
                 let dayThreeDescription = $('<h4>').text(` ${response.daily[2].weather[0].description} `);
                 let dayFourDescription = $('<h4>').text(` ${response.daily[3].weather[0].description} `);
                 let dayFiveDescription = $('<h4>').text(` ${response.daily[4].weather[0].description} `);
+                let dayOneHumidity = $('<h5>').text(`Humidity: ${response.daily[0].humidity}%`);
+                let dayTwoHumidity = $('<h5>').text(`Humidity: ${response.daily[1].humidity}%`);
+                let dayThreeHumidity = $('<h5>').text(`Humidity: ${response.daily[2].humidity}%`);
+                let dayFourHumidity = $('<h5>').text(`Humidity: ${response.daily[3].humidity}%`);
+                let dayFiveHumidity = $('<h5>').text(`Humidity: ${response.daily[4].humidity}%`);
                 let dayOneTempMax = $('<h5>').text(`High: ${response.daily[0].temp.max}°F`);
                 let dayTwoTempMax = $('<h5>').text(`High: ${response.daily[1].temp.max}°F`);
                 let dayThreeTempMax = $('<h5>').text(`High: ${response.daily[2].temp.max}°F`);
@@ -58,6 +65,7 @@ function displaycityInfo(city) {
                 let dayThreeTempMin = $('<h5>').text(`Low: ${response.daily[2].temp.min}°F`);
                 let dayFourTempMin = $('<h5>').text(`Low: ${response.daily[3].temp.min}°F`);
                 let dayFiveTempMin = $('<h5>').text(`Low: ${response.daily[4].temp.min}°F`);
+                let timezone = $('<h2>').text(city);
                 cityContainer.append(logo);
                 cityContainer.append(feelsLike);
                 cityContainer.append(currentTemp);
@@ -74,6 +82,11 @@ function displaycityInfo(city) {
                 dayThree.append(dayThreeDescription);
                 dayFour.append(dayFourDescription);
                 dayFive.append(dayFiveDescription);
+                dayOne.append(dayOneHumidity);
+                dayTwo.append(dayTwoHumidity);
+                dayThree.append(dayThreeHumidity);
+                dayFour.append(dayFourHumidity);
+                dayFive.append(dayFiveHumidity);
                 dayOne.append(dayOneTempMax);
                 dayTwo.append(dayTwoTempMax);
                 dayThree.append(dayThreeTempMax);
@@ -84,13 +97,13 @@ function displaycityInfo(city) {
                 dayThree.append(dayThreeTempMin);
                 dayFour.append(dayFourTempMin);
                 dayFive.append(dayFiveTempMin);
-                console.log(response)
                 $('#cities-view').prepend(cityContainer);
                 $('#day1').prepend(dayOne);
                 $('#day2').prepend(dayTwo);
                 $('#day3').prepend(dayThree);
                 $('#day4').prepend(dayFour);
                 $('#day5').prepend(dayFive);
+                $('#timezone').prepend(timezone);
             });
     });    
 }
@@ -116,15 +129,15 @@ $("#add-city").on("click", function (event) {
 
 $(document).on("click", ".city", function (event) {
     event.preventDefault();
+    $('#five-day').toggleClass('hide');
     let city = $(this).attr("data-name");
     console.log(city);
     displaycityInfo(city);
 
 });
-//$(document).on("click", "#add-city", function(event) {
-    //$('#city-input').localStorage.setItem();
-//})
 
+document.getElementById('add-city').addEventListener('click', function() {
+    document.querySelector('#five-day').style.display='flex';
+});
 
-// Calling the renderButtons function to display the initial buttons
 renderButtons();
